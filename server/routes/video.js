@@ -24,6 +24,7 @@ let storage = multer.diskStorage({
     }
 });
 
+// const upload = multer({ storage: storage }).array("file", 3);
 const upload = multer({ storage: storage }).single("file");
 
 //=================================
@@ -37,7 +38,12 @@ router.post('/uploadfiles', (req, res) => {
         if(err) {
             return res.json({ success: false, err })
         }
+        console.log(res.req.file)
+        // const url = res.req.files.map(v => v.path)
+        // const fileName = res.req.files.map(v => v.filename)
+        // return res.json({ success:true, url: url, fileName: fileName })
         return res.json({ success:true, url: res.req.file.path, fileName: res.req.file.filename })
+        
     })
 })
 

@@ -54,15 +54,29 @@ function LandingPage() {
             })
 
     return (
+        <div>
+        <div className="banner" style={{ width:'100%', height:'30vh', background:'linear-gradient(135deg, #f1c110, #ff1616d6)'}}>
+            <div className="search-bar">
+                <span>다른 작가들의 세계관을 탐험해보세요</span>
+            </div>
+        </div>
         <div style={{ width:'85%', margin:'3rem auto' }}>
-            <Title level={2}>Recommended</Title>
-            <hr />
+            {/* <Title level={2}>최다 추천</Title> */}
+            <ul className="landing-ul">
+                <a href="/"><li className="landing-li">최다 추천</li></a>
+                <a href="/"><li className="landing-li">최신 등록</li></a>
+                <a href="/"><li className="landing-li">최고 인기</li></a>
+               
+            </ul>
+            
+            
             <Row gutter={[32, 16]} >
 
                 {renderCards}
                 
             </Row>
 
+        </div> 
         </div>
     )
 }

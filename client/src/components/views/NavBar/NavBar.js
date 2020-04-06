@@ -18,7 +18,10 @@ function NavBar() {
   return (
     <nav className="menu" style={{ position: 'fixed', zIndex: 5, width: '100%' }}>
       <div className="menu__logo">
-        <a href="/">Logo</a>
+        <a href="/" style={{color: '#FF665A', fontWeight:'700'}}>CATCH 
+          <span style={{color:'#999', fontWeight:'400', fontSize:'20px'}}> auth</span>
+        </a>
+        
       </div>
       <div className="menu__container">
         <div className="menu_left">

@@ -53,3 +53,44 @@ input.error {
   font-weight: 500;
   line-height: 12px;
 }
+
+.landing-ul {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 4.5rem 0 2.5rem 0;
+}
+
+.landing-li {
+  display: flex;
+  /* margin: auto 5%; */
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+}
+
+.landing-ul a {
+  color: #999;
+  /* width: 24%; */
+}
+  .landing-ul a:hover {
+    color: #FF665A;
+  }
+
+.search-bar {
+  position: relative;
+  top: 91%;
+  margin: auto 29%;
+  width: 50%;
+  background-color: white;
+  height: 20%;
+  border-radius: 5px;
+  padding: 11px;
+  box-shadow: 0px 5px 5px rgba(221, 221, 221, 0.25);
+}
+
+.search-bar span {
+  font-size: 18px;
+  font-weight: 500;
+  color: #DDDDDD;
+  line-height: 30px;
+}
