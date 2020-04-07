@@ -56,8 +56,9 @@ input.error {
 
 .landing-ul {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   margin: 4.5rem 0 2.5rem 0;
+  padding: 0 10vw;
 }
 
 .landing-li {

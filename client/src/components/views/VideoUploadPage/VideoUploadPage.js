@@ -2,23 +2,25 @@ import React, {useState} from 'react'
 import { Typography, Button, Form, message, Input, Icon } from 'antd';
 import Dropzone from 'react-dropzone';
 import TextArea from 'antd/lib/input/TextArea';
+import './VideoUploadPage.css';
 import Axios from 'axios';
 import { useSelector } from 'react-redux';
+
 
 // const { TextArea } = input;
 const { Title } = Typography;
 
 const PrivateOptions = [
-    {value:0, label: "Private"},
-    {value:1, label: "Public"}
+    {value:0, label: "비공개"},
+    {value:1, label: "전체 공개"}
 ]
 
-const CategoryOptions = [
-    {value:0, label:"Film & Animation"},
-    {value:1, label:"Autos & Vehicles"},
-    {value:2, label:"Music"},
-    {value:3, label:"Pets & Animals"}
-]
+// const CategoryOptions = [
+//     {value:0, label:"Film & Animation"},
+//     {value:1, label:"Autos & Vehicles"},
+//     {value:2, label:"Music"},
+//     {value:3, label:"Pets & Animals"}
+// ]
 
 
 function VideoUploadPage(props) {
@@ -117,14 +119,15 @@ function VideoUploadPage(props) {
 
 
     return (
-        <div style={{ maxWidth:'700px', margin:'2rem auto' }}>
+        <div  style={{ maxWidth:'700px', margin:'2rem auto' }}>
             <div style={{textAlign:'center', marginBottom:'2rem'}} >
                 {/* <Title level={2}></Title> */}
             </div>
-            <Form onSubmit={onSubmit}>
-                <div style={{ display:'flex', justifyContent:'space-between' }}>
+            <Form className="container" onSubmit={onSubmit}>
+                <div className="dropcontainer" style={{ display:'flex', }}>
                      {/* Drop Zone */}
                      <Dropzone 
+                        className="dropzone"
                         onDrop={onDrop}
                         multiple={false}
                         maxSize={800000000}>
@@ -137,10 +140,13 @@ function VideoUploadPage(props) {
                          </div>
                             )}
                      </Dropzone>
+                     
 
                      {/* Thumbnail */}
                         {ThumbnailPath &&
-                            <div>
+                            <div 
+                            className="thumbnail"
+                            >
                                 <img src={`http://localhost:5000/${ThumbnailPath}`} alt="thumbnail"/>
                             </div>
                         }
@@ -148,21 +154,39 @@ function VideoUploadPage(props) {
             
             <br />
             <br />
+
+            <div className="titleInput">
             <label>제목</label>
             <Input 
+                className="titleArea"
+                placeholder="제목을 입력해주세요."
                 onChange={onTitleChange}
                 value={VideoTitle}
             />
             <br />
             <br />
+            </div>
+            
+
+            <div className="descInput">
             <label>설명</label>
-            <TextArea 
+            <Input 
+                className="textArea"
+                placeholder="작품에 대한 설명을 입력해주세요."
                 onChange={onDescriptionChange}
                 value={Description}
             />
             <br />
             <br />
-            <select onChange={onPrivateChange} >
+            </div>
+            
+            
+            <div className="option"> 
+            <label>공개범위</label>
+            <br />
+            <select 
+                className="selectPrivate"
+                onChange={onPrivateChange} >
                 {PrivateOptions.map((item, index) => (
                     <option key={index} value={item.value}>{item.label}</option>
                 ))}
@@ -170,14 +194,19 @@ function VideoUploadPage(props) {
             <br />
             <br />
 
-            <select onChange={onCategoryChange} >
+            {/* <select onChange={onCategoryChange} >
                 {CategoryOptions.map((item, index) => (
                     <option key={index} value={item.value}>{item.label}</option>
                 ))}
-            </select>
+            </select> 
+            
+
             <br />
-            <br />
-            <Button type="primary" size="large" onClick={onSubmit}>
+            <br /> */}
+            </div>
+            <Button 
+            className="submitButton"
+                type="primary" size="large" onClick={onSubmit}>
                 Submit
             </Button>
             </Form>
