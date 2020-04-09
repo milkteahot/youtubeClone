@@ -27,37 +27,37 @@ function LandingPage() {
     });
   }, []);
   const renderCards = Video.map((video, index) => {
-    var minutes = Math.floor(video.duration / 60);
-    var seconds = Math.floor(video.duration - minutes * 60);
+    // var minutes = Math.floor(video.duration / 60);
+    // var seconds = Math.floor(video.duration - minutes * 60);
 
-    return (
-      <Col lg={8} md={8} xs={24}>
-        <a href={`/video/post/${video._id}`}>
-          <div style={{ position: "relative" }}>
+    return <Col lg={8} md={8} xs={24}>
+      <div  style={{ position: "relative" }}>
+        <a href={`/video/${video._id}`}>
+          
             <img
               style={{ width: "100%" }}
               src={`http://localhost:5000/${video.thumbnail}`}
             />
-            <div className="duration">
+            {/* <div className="duration">
               <span>
                 {minutes} : {seconds}
               </span>
-            </div>
+            </div> */}
+            </a>
           </div>
-        </a>
+        
         <br />
         <Meta
           avatar={<Avatar src={video.writer.image} />}
-          writer={video.writer.name}
+          title={video.title}
+          description=""
         />
-        <Meta title={video.title} style={{margin: "0"}}/>
-        {/* <Meta description=""/> */}
-        
+        <span>{video.writer.name}</span>
         <br />
-        <span style={{ marginLeft: "3rem" }}>{video.views} views</span> -
-        <span> {moment(video.createdAt).format("MMM Do YY")} </span>
+        {/* <span style={{ marginLeft: "3rem" }}>{video.views} views</span> - */}
+        <span style={{marginLeft:"3rem"}}> {moment(video.createdAt).format("MMM Do YY")} </span>
       </Col>
-    );
+    
   });
 
   return (

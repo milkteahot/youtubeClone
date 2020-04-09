@@ -47,6 +47,16 @@ router.post('/uploadfiles', (req, res) => {
     })
 })
 
+router.post('/getVideoDetail', (req, res) => {
+    Video.findOne({ "_id" : req.body.videoId })
+        .populate('writer')
+        .exec((err, videoDetail) => {
+            if(err) return res.status(400).send(err)
+            return res.status(200).json({ success: true, videoDetail })
+        })
+    
+});
+
 router.post('/uploadVideo', (req, res) => {
 
     //비디오 정보를 저장
@@ -72,41 +82,49 @@ router.get('/getVideos', (req, res) => {
 })
 
 router.post('/thumbnail', (req, res) => {
-
     let filePath = ""
-    let fileDuration = ""
-
-    //비디오 정보 가져오기
-    ffmpeg.ffprobe(req.body.url, function(err, metadata) {
-        console.dir(metadata);
-        console.log(metadata.format.duration);
-        fileDuration = metadata.format.duration
-    });
-
-    //썸네일 생성
-    ffmpeg(req.body.url)
-    .on('filenames', function(filenames) {
-        console.log('will generate' + filenames.join(', '))
-        console.log(filenames)
-
-        filePath = "uploads/thumbnails/" + filenames[0]
-    })
-    .on('end', function() {
-        console.log('Screenshots taken');
-        return res.json({ success: true, url: filePath, fileDuration: fileDuration})
-    })
-    .on('error', function(err) {
-        console.log(err);
-        return res.json({ success: false, err });
-    })
-    .screenshots({
-        count:1,
-        folder: "uploads/thumbnails",
-        size: '320x240',
-        filename: 'thumbnail-%b.png'
-    })
+    console.log(req.body.url)
+    filePath = req.body.url;
+    
 
 })
+
+// router.post('/thumbnail', (req, res) => {
+
+//     let filePath = ""
+//     let fileDuration = ""
+
+//     //비디오 정보 가져오기
+//     ffmpeg.ffprobe(req.body.url, function(err, metadata) {
+//         console.dir(metadata);
+//         console.log(metadata.format.duration);
+//         fileDuration = metadata.format.duration
+//     });
+
+//     //썸네일 생성
+//     ffmpeg(req.body.url)
+//     .on('filenames', function(filenames) {
+//         console.log('will generate' + filenames.join(', '))
+//         console.log(filenames)
+
+//         filePath = "uploads/thumbnails/" + filenames[0]
+//     })
+//     .on('end', function() {
+//         console.log('Screenshots taken');
+//         return res.json({ success: true, url: filePath, fileDuration: fileDuration})
+//     })
+//     .on('error', function(err) {
+//         console.log(err);
+//         return res.json({ success: false, err });
+//     })
+//     .screenshots({
+//         count:1,
+//         folder: "uploads/thumbnails",
+//         size: '320x240',
+//         filename: 'thumbnail-%b.png'
+//     })
+
+// })
 
 
 module.exports = router;

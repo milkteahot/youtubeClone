@@ -30,7 +30,7 @@ function VideoUploadPage(props) {
     const [Private, setPrivate] = useState(0)
     const [Category, setCategory] = useState("Film & Animation")
     const [FilePath, setFilePath] = useState("")
-    const [Duration, setDuration] = useState("")
+    // const [Duration, setDuration] = useState("")
     const [ThumbnailPath, setThumbnailPath] = useState("")
 
     const onTitleChange = (e) => {
@@ -74,7 +74,7 @@ function VideoUploadPage(props) {
                         if(response.data.success) {
                             // console.log(response.data)
 
-                            setDuration(response.data.fileDuration)
+                            // setDuration(response.data.fileDuration)
                             setThumbnailPath(response.data.url)
                         } else {
                             alert('비디오 썸네일 생성을 실패했습니다.')
@@ -96,7 +96,7 @@ function VideoUploadPage(props) {
             privacy: Private,
             filePaht: FilePath,
             category: Category,
-            duration: Duration,
+            // duration: Duration,
             thumbnail: ThumbnailPath,
         }
 
